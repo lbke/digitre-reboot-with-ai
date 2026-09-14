@@ -1,16 +1,14 @@
 import "@/index.css";
 
 import { useState } from "react";
-import { useRegisterViewTool, useUser } from "skybridge/web";
-import Nav from "./components/nav.js";
-import Progress from "./components/progress.js";
+import { useRegisterViewTool, useUser, useViewport } from "skybridge/web";
 import Outro from "./components/steps/outro.js";
 import State from "./components/steps/state.js";
 import ToolCall from "./components/steps/tool-call.js";
 import ToolOutput from "./components/steps/tool-output.js";
-import { useMascot } from "./use-mascot.js";
 import { Deck, Markdown, Slide, useReveal } from "@revealjs/react";
 import type { Api } from "reveal.js";
+import lbkeLogo from "../../assets/img/logo_lbke_complet.png";
 // imported from the index.css file instead, here it doesn't work
 // import "reveal.js/reveal.css";
 // import "reveal.js/theme/black.css";
@@ -47,18 +45,169 @@ function useNextSlideTool() {
 }
 
 export default function Slides() {
+  const { maxHeight, safeArea } = useViewport();
   useNextSlideTool();
   return (
-    <Deck style={{ height: 600 }}>
+    <Deck
+      style={{
+        height: maxHeight,
+        minHeight: 600,
+        paddingBottom: safeArea.insets.bottom,
+      }}
+    >
       <Slide>
         <h1>MCP</h1>
+        <img src={lbkeLogo} />
       </Slide>
       <Slide>
         <Markdown>
           {`
-  # Principe du MCP
-  
+  ## Agents IA 
+
+  = Prompt + LLM + outils + une boucle
+
+  -> Outils pour observer
+  -> Outils pour agir
+
   `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+# MCP en 1 mot
+
+Standardiser la connexion entre :
+- agent
+- données
+- outils
+
+= API mais pour les agents IA
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+## Un protocole purement backend
+
+- Afficher un widget ? Dépend de l'hôte (ChatGPT, Claude...)
+- Coder un upload de fichiers ? Impossible
+- Outils multi-étapes, HITL ? Compliqués (élicitation)
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+# 🕊️ MCP Apps 🙏
+
+Des applis fullstack... dans Claude !
+
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+# Cas d'usage
+
+- Mettre de la pub dans ChatGPT
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+# Démo 1 : Doom dans Claude
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+# Démo 2 : GPT dans Claude
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+## Coder vos MCP Apps
+
+- FastMCP : Python + UI avec Prefab
+- mcp-use : Python ou JavaScript, UI en React
+- Skybridge : JavaScript, UI en react
+- SDK officiel : Tous langages (support variable), UI JS/HTML/CSS
+
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+## Bonus : WebMCP, petit frère des MCP Apps
+
+- Définir des outils pour facilité la navigation sur un site web
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+# Démo : WebMCP pour Zork
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+## Dev web ❤️ IA agentique
+
+- Serveur MCP => dev backend
+- MCP App => dev fullstack
+- WebMCP => dev frontend
+
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+# IA agentique = **génie logiciel** + IA
+          `}
+        </Markdown>
+      </Slide>
+
+      <Slide>
+        <Markdown>
+          {`
+# Formations et certifications
+
+- Claude Academy -> Claude Certified Architecte
+- Linux Foundation -> MCP Associate
+- LBKE -> « Créer une application MCP pour l'IA agentique" »
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+          - [Talk de Laurent Bernard sur le MCP](https://www.youtube.com/watch?v=alBXGtUO1C4)
+- [Claude Academy](https://academy.claude.com/)
+- [MCPA (Linux Foundation)](https://training.linuxfoundation.org/certification/model-context-protocol-associate-mcpa/)
+- [LBKE- Créer une application MCP pour l'IA agentique](https://www.lbke.fr/formations/ia/mcp)
+          `}
         </Markdown>
       </Slide>
     </Deck>
