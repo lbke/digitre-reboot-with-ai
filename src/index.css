@@ -2,6 +2,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "@alpic-ai/ui/theme";
+@import "reveal.js/reveal.css";
+@import "reveal.js/theme/black.css";
 
 @source "../node_modules/@alpic-ai/ui/src";
 

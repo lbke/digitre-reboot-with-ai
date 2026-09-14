@@ -2,46 +2,46 @@ import { Skybridge } from "skybridge/server";
 import { z } from "zod";
 
 export const app = new Skybridge({
-  name: "alpic-openai-app",
+  name: "gen-ai-2026-mcp",
   version: "0.0.1",
   handler: (server) =>
     server
       .registerTool(
         {
           name: "start",
-          description: "Onboard Skybridge",
+          description: "Start the presentation",
           inputSchema: {
-            name: z.string().optional().describe("The user name."),
+            // name: z.string().optional().describe("The user name."),
           },
           annotations: {
-            title: "Start Skybridge onboarding",
+            title: "Start GenAI Meetup Presentation",
             readOnlyHint: true,
             destructiveHint: false,
             openWorldHint: false,
           },
           _meta: {
             "openai/toolInvocation/invoking":
-              "Starting the Skybridge onboarding…",
-            "openai/toolInvocation/invoked": "Onboarding ready.",
+              "Démarrage de la présentation…",
+            "openai/toolInvocation/invoked": "Prêt à présenter.",
           },
           view: {
-            component: "onboarding",
+            component: "slides",
             // Replace with the URL your widget will be served from in production.
-            domain: "https://skybridge.tech",
-            description: "Onboarding deck",
+            domain: "https://www.lbke.fr",
+            description: "Présentation pour le meetup GenAI Montpellier",
             csp: {
               resourceDomains: [
                 "https://fonts.googleapis.com",
                 "https://fonts.gstatic.com",
               ],
-              redirectDomains: ["https://docs.skybridge.tech"],
+              redirectDomains: ["https://www.lbke.fr"],
             },
           },
         },
-        async ({ name }) => {
+        async ({ }) => {
           return {
-            structuredContent: { name },
-            content: [{ type: "text", text: `User name: ${name ?? "friend"}` }],
+            structuredContent: {},
+            content: [{ type: "text", text: `` }],
             isError: false,
           };
         },
