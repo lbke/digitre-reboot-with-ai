@@ -18,6 +18,8 @@ function useNextSlideTool() {
     {
       name: "next_slide",
       description: "Next Slide",
+      inputSchema: {},
+      annotations: { readOnlyHint: false },
     },
     ({}) => {
       if (deck.isLastSlide()) {
@@ -38,6 +40,8 @@ function usePrevSlideTool() {
     {
       name: "previous_slide",
       description: "Previous Slide",
+      inputSchema: {},
+      annotations: { readOnlyHint: false },
     },
     ({}) => {
       if (deck.isFirstSlide()) {
@@ -162,7 +166,7 @@ Des applis fullstack, en MCP !
 - Mettre de la pub dans ChatGPT 🎉
 - Peut-on faire mieux ?
 
-*Démos issues d'une série d'article à retrouver sur Quoi de neufs les devs*
+*Démos issues d'une série d'articles à retrouver sur Quoi de neufs les devs*
 
   `}
         </Markdown>
@@ -173,7 +177,9 @@ Des applis fullstack, en MCP !
 
 # Démo 0 : Ce slidedeck !
 
+https://github.com/lbke/gen-ai-2026-mcp  
 https://gen-ai-2026-mcp-20ca173a.alpic.live
+
 
   `}
         </Markdown>
@@ -184,7 +190,7 @@ https://gen-ai-2026-mcp-20ca173a.alpic.live
 
 # Démo 1 : Doom dans Claude
 
-https://github.com/lbke/mcp-use-doom
+https://github.com/lbke/mcp-use-doom  
 https://keen-spark-10owm.run.mcp-use.com/mcp
 
 Le WASM fonctionne !
@@ -198,7 +204,7 @@ Le WASM fonctionne !
 
 # Démo 2 : GPT Image dans Claude
 
-https://github.com/lbke/mcp-apps-image-generator
+https://github.com/lbke/mcp-apps-image-generator  
 https://wild-spark-3dg4a.run.mcp-use.com/mcp
 
 Fetch côté client, BYOK possible, contrôle sur l'UI, prompting assisté par l'IA
@@ -252,6 +258,8 @@ Limité à Chrome Canary et ChatGPT desktop
 - MCP App => dev fullstack
 - WebMCP => dev frontend
 
+Du boulot pour les devs web !
+
           `}
         </Markdown>
       </Slide>
@@ -260,17 +268,16 @@ Limité à Chrome Canary et ChatGPT desktop
           {`
 # Devenir pro du MCP
 
-Formations et certifications
-
-- Claude Academy -> Claude Certified Architecte
-- Linux Foundation -> MCP Associate
-- LBKE -> « Créer une application MCP pour l'IA agentique »
+- Claude Academy ➡️ Claude Certified Architect
+- Linux Foundation ➡️ MCP Associate
+- LBKE ➡️ « Créer une application MCP pour l'IA agentique »
           `}
         </Markdown>
       </Slide>
       <Slide>
         <Markdown>
           {`
+          Refs:
           - [MCP Apps - Quoi de neuf les devs](https://quoi-de-neuf-les-devs.happyto.dev/p/jusqu-a-2-9-milliards-de-commits-par-mois-keep-calm-and-stay-focused-quoi-de-neuf-les-devs-188#mcp-apps)
           - [Talk de Laurent Bernard sur le MCP](https://www.youtube.com/watch?v=alBXGtUO1C4)
 - [Claude Academy](https://academy.claude.com/)
