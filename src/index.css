@@ -21,3 +21,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Otherwise it won't display at proper size in Claude, not sure why / how to fix*/
+.reveal-viewport {
+  height: 700px;
+}
