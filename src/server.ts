@@ -1,5 +1,5 @@
 import { Skybridge } from "skybridge/server";
-import { z } from "zod";
+// import { z } from "zod";
 
 export const app = new Skybridge({
   name: "gen-ai-2026-mcp",

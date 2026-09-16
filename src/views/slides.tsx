@@ -1,24 +1,12 @@
 import "@/index.css";
 
-import { useState } from "react";
-import { useRegisterViewTool, useUser, useViewport } from "skybridge/web";
-import Outro from "./components/steps/outro.js";
-import State from "./components/steps/state.js";
-import ToolCall from "./components/steps/tool-call.js";
-import ToolOutput from "./components/steps/tool-output.js";
+import { useRegisterViewTool, useViewport } from "skybridge/web";
 import { Deck, Markdown, Slide, useReveal } from "@revealjs/react";
 import type { Api } from "reveal.js";
-import lbkeLogo from "../../assets/img/logo_lbke_complet.png";
+import lbkeLogo from "../../assets/img/logo_lbke_complet_saumon_300.png";
 // imported from the index.css file instead, here it doesn't work
 // import "reveal.js/reveal.css";
 // import "reveal.js/theme/black.css";
-
-const STEPS = [
-  { label: "Reading tool output", Component: ToolOutput },
-  { label: "Sharing view state", Component: State },
-  { label: "Calling tools", Component: ToolCall },
-  { label: "Examples & docs", Component: Outro },
-] as const;
 
 // @see https://docs.skybridge.tech/api-reference/use-register-view-tool#useregisterviewtool
 // @see https://revealjs.com/react/
@@ -43,31 +31,69 @@ function useNextSlideTool() {
     },
   );
 }
+function usePrevSlideTool() {
+  // TODO: open a ticket for this, it seems that RevealApi was renamed Api which breacks useReveal() typings
+  const deck = useReveal() as Api;
+  useRegisterViewTool(
+    {
+      name: "previous_slide",
+      description: "Previous Slide",
+    },
+    ({}) => {
+      if (deck.isFirstSlide()) {
+        return { content: [{ type: "text", text: "Already at first slide." }] };
+      }
+      deck.next();
+      return {
+        content: [{ type: "text", text: "Going to previous slide." }],
+        structuredContent: { slideNb: deck.getSlidePastCount() },
+      };
+    },
+  );
+}
 
 export default function Slides() {
   const { maxHeight, safeArea } = useViewport();
   useNextSlideTool();
+  usePrevSlideTool();
   return (
     <Deck
       style={{
         height: maxHeight,
-        minHeight: 600,
+        minHeight: 720,
         paddingBottom: safeArea.insets.bottom,
       }}
     >
       <Slide>
-        <h1>MCP</h1>
-        <img src={lbkeLogo} />
+        <h1>MCP : Quoi de neuf en 2026?</h1>
+        <p>Meetup GenAI Montpellier - 24 septembre 2026</p>
       </Slide>
       <Slide>
         <Markdown>
           {`
-  ## Agents IA 
+          ## Votre speaker
 
-  = Prompt + LLM + outils + une boucle
+          Eric Burel
 
-  -> Outils pour observer
-  -> Outils pour agir
+          Formateur IA agentique - Co-fondateur de LBKE
+
+          LangChain, Mastra, MCP, RAG, web fullstack...
+
+          ![Logo LBKE](${lbkeLogo})
+          
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+  ## Agent IA 
+
+  = Prompt + LLM **+ outils**  
+  (et une boucle while)
+
+  *Exemple : "Claude, résoud ce ticket pour moi, débrouille toi avec l'API GitHub et le débogueur."*
+
 
   `}
         </Markdown>
@@ -75,14 +101,29 @@ export default function Slides() {
       <Slide>
         <Markdown>
           {`
-# MCP en 1 mot
+          # Besoin de nombreux outils
 
-Standardiser la connexion entre :
-- agent
-- données
-- outils
+  Outil = du code + une description agissant comme un prompt
 
-= API mais pour les agents IA
+  🔎 Outils pour observer  
+  🦾 Outils pour agir
+
+
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+## MCP pour standardiser
+
+~ API, mais pour les agents IA
+
+Outils + prompts, ressources...
+
+*Voir le talk de Laurent Bernard pour le meetup GenAI*
+
   `}
         </Markdown>
       </Slide>
@@ -91,9 +132,9 @@ Standardiser la connexion entre :
           {`
 ## Un protocole purement backend
 
-- Afficher un widget ? Dépend de l'hôte (ChatGPT, Claude...)
-- Coder un upload de fichiers ? Impossible
-- Outils multi-étapes, HITL ? Compliqués (élicitation)
+- Outils multi-étapes, HITL ?
+- Pas de contrôle sur les widgets générés automatiquement
+- Messages sérialisables => pas de transferts de binaires
 
   `}
         </Markdown>
@@ -104,7 +145,7 @@ Standardiser la connexion entre :
 
 # 🕊️ MCP Apps 🙏
 
-Des applis fullstack... dans Claude !
+Des applis fullstack, en MCP !
 
 
   `}
@@ -116,7 +157,19 @@ Des applis fullstack... dans Claude !
 
 # Cas d'usage
 
-- Mettre de la pub dans ChatGPT
+- Mettre de la pub dans ChatGPT 🎉
+- Peut-on faire mieux ?
+
+*Démos issues d'une série d'article à retrouver sur Quoi de neufs les devs*
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+# Démo 0 : Ce slidedeck !
 
   `}
         </Markdown>
@@ -127,14 +180,10 @@ Des applis fullstack... dans Claude !
 
 # Démo 1 : Doom dans Claude
 
-  `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+https://github.com/lbke/mcp-use-doom
+https://keen-spark-10owm.run.mcp-use.com/mcp
 
-# Démo 2 : GPT dans Claude
+Le WASM fonctionne !
 
   `}
         </Markdown>
@@ -142,7 +191,21 @@ Des applis fullstack... dans Claude !
       <Slide>
         <Markdown>
           {`
-## Coder vos MCP Apps
+
+# Démo 2 : GPT Image dans Claude
+
+https://github.com/lbke/mcp-apps-image-generator
+https://wild-spark-3dg4a.run.mcp-use.com/mcp
+
+Fetch côté client, BYOK possible, contrôle sur l'UI, prompting assisté par l'IA
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+## Coder vos propres MCP Apps
 
 - FastMCP : Python + UI avec Prefab
 - mcp-use : Python ou JavaScript, UI en React
@@ -157,7 +220,10 @@ Des applis fullstack... dans Claude !
           {`
 ## Bonus : WebMCP, petit frère des MCP Apps
 
-- Définir des outils pour facilité la navigation sur un site web
+= définir des outils dans une page web
+
+Facilite la navigation des agents sur un site
+
           `}
         </Markdown>
       </Slide>
@@ -165,13 +231,18 @@ Des applis fullstack... dans Claude !
         <Markdown>
           {`
 # Démo : WebMCP pour Zork
+
+https://zork-phi.vercel.app/
+
+Limité à Chrome Canary et ChatGPT desktop
           `}
         </Markdown>
       </Slide>
       <Slide>
         <Markdown>
           {`
-## Dev web ❤️ IA agentique
+
+## Bilan : dev web ❤️ IA agentique
 
 - Serveur MCP => dev backend
 - MCP App => dev fullstack
@@ -183,26 +254,20 @@ Des applis fullstack... dans Claude !
       <Slide>
         <Markdown>
           {`
+# Devenir pro du MCP
 
-# IA agentique = **génie logiciel** + IA
-          `}
-        </Markdown>
-      </Slide>
-
-      <Slide>
-        <Markdown>
-          {`
-# Formations et certifications
+Formations et certifications
 
 - Claude Academy -> Claude Certified Architecte
 - Linux Foundation -> MCP Associate
-- LBKE -> « Créer une application MCP pour l'IA agentique" »
+- LBKE -> « Créer une application MCP pour l'IA agentique »
           `}
         </Markdown>
       </Slide>
       <Slide>
         <Markdown>
           {`
+          - [MCP Apps - Quoi de neuf les devs](https://quoi-de-neuf-les-devs.happyto.dev/p/jusqu-a-2-9-milliards-de-commits-par-mois-keep-calm-and-stay-focused-quoi-de-neuf-les-devs-188#mcp-apps)
           - [Talk de Laurent Bernard sur le MCP](https://www.youtube.com/watch?v=alBXGtUO1C4)
 - [Claude Academy](https://academy.claude.com/)
 - [MCPA (Linux Foundation)](https://training.linuxfoundation.org/certification/model-context-protocol-associate-mcpa/)

@@ -1,3 +1,6 @@
+pnpm run dev
+
+---
 # Skybridge Template
 
 A starter TypeScript template for building MCP and ChatGPT Apps with the [Skybridge](https://docs.skybridge.tech) framework.
