@@ -53,14 +53,16 @@ function usePrevSlideTool() {
 }
 
 export default function Slides() {
-  const { maxHeight, safeArea } = useViewport();
+  const { safeArea } = useViewport();
   useNextSlideTool();
   usePrevSlideTool();
   return (
     <Deck
+      config={{
+        height: 700,
+      }}
       style={{
-        height: maxHeight,
-        minHeight: 720,
+        height: 700,
         paddingBottom: safeArea.insets.bottom,
       }}
     >
@@ -170,6 +172,8 @@ Des applis fullstack, en MCP !
           {`
 
 # Démo 0 : Ce slidedeck !
+
+https://gen-ai-2026-mcp-20ca173a.alpic.live
 
   `}
         </Markdown>
