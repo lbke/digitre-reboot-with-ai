@@ -11,12 +11,21 @@ Serveur MCP déployé :
 ```
 https://gen-ai-2026-mcp-20ca173a.alpic.live/mcp
 
+https://github.com/lbke/gen-ai-2026-mcp
+
 ```
 
 Ajouter le connecteur dans Mistral:
 
 https://chat.mistral.ai/connections
 
+Pour tester dans Claude:
+
+https://claude.ai/chat
+
+Backup Google slides: 
+
+https://docs.google.com/presentation/d/1bLYBR18dvFTAa9hsewpl20rQkLwXAHL4z7AKYgX8opQ/edit?usp=sharing
 
 ---
 
