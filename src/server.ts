@@ -8,8 +8,8 @@ export const app = new Skybridge({
     server
       .registerTool(
         {
-          name: "start",
-          description: "Start the presentation",
+          name: "start_slidedeck",
+          description: "Start the presentation for the Gen AI Montpellier meetup, will display the slidedeck.",
           inputSchema: {
             // name: z.string().optional().describe("The user name."),
           },

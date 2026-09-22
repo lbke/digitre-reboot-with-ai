@@ -71,13 +71,14 @@ export default function Slides() {
       }}
     >
       <Slide>
-        <h1>MCP : Quoi de neuf en 2026?</h1>
+        <h1 style={{}}>MCP</h1>
+        <h2>Quoi de neuf en 2026?</h2>
         <p>Meetup GenAI Montpellier - 24 septembre 2026</p>
       </Slide>
       <Slide>
         <Markdown>
           {`
-          ## Votre speaker
+          # Votre speaker
 
           Eric Burel
 
@@ -93,13 +94,30 @@ export default function Slides() {
       <Slide>
         <Markdown>
           {`
-  ## Agent IA 
+  # Agent IA 
 
   = Prompt + LLM **+ outils**  
   (et une boucle while)
 
-  *Exemple : "Claude, résoud ce ticket pour moi, débrouille toi avec l'API GitHub et le débogueur."*
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
 
+  # Outil 
+  
+  = code informatique + nom et description
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+  *Exemple : "Claude, résous ce ticket pour moi, débrouille toi avec l'API GitHub et le débogueur."*
 
   `}
         </Markdown>
@@ -109,7 +127,6 @@ export default function Slides() {
           {`
           # Besoin de nombreux outils
 
-  Outil = du code + une description agissant comme un prompt
 
   🔎 Outils pour observer  
   🦾 Outils pour agir
@@ -122,11 +139,11 @@ export default function Slides() {
         <Markdown>
           {`
 
-## MCP pour standardiser
+# MCP pour standardiser
 
 ~ API, mais pour les agents IA
 
-Outils + prompts, ressources...
+Outils mais aussi prompts, ressources...
 
 *Voir le talk de Laurent Bernard pour le meetup GenAI*
 
@@ -136,11 +153,13 @@ Outils + prompts, ressources...
       <Slide>
         <Markdown>
           {`
-## Un protocole purement backend
+# MCP = backend
+
+Limites d'une approche backend pur :
 
 - Outils multi-étapes, HITL ?
-- Pas de contrôle sur les widgets générés automatiquement
-- Messages sérialisables => pas de transferts de binaires
+- Pas de contrôle sur les widgets générés
+- Messages sérialisables uniquement
 
   `}
         </Markdown>
@@ -151,7 +170,7 @@ Outils + prompts, ressources...
 
 # 🕊️ MCP Apps 🙏
 
-Des applis fullstack, en MCP !
+La solution : des applis fullstack, en MCP !
 
 
   `}
@@ -177,8 +196,8 @@ Des applis fullstack, en MCP !
 
 # Démo 0 : Ce slidedeck !
 
-https://github.com/lbke/gen-ai-2026-mcp  
-https://gen-ai-2026-mcp-20ca173a.alpic.live
+Serveur : https://gen-ai-2026-mcp-20ca173a.alpic.live/mcp
+Code : https://github.com/lbke/gen-ai-2026-mcp  
 
 
   `}
@@ -228,7 +247,7 @@ Fetch côté client, BYOK possible, contrôle sur l'UI, prompting assisté par l
       <Slide>
         <Markdown>
           {`
-## Bonus : WebMCP, petit frère des MCP Apps
+# Bonus : WebMCP, petit frère des MCP Apps
 
 = définir des outils dans une page web
 
@@ -252,7 +271,7 @@ Limité à Chrome Canary et ChatGPT desktop
         <Markdown>
           {`
 
-## Bilan : dev web ❤️ IA agentique
+# Bilan : dev web ❤️ IA agentique
 
 - Serveur MCP => dev backend
 - MCP App => dev fullstack

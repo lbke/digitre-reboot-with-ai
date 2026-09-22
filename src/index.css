@@ -26,3 +26,17 @@
 .reveal-viewport {
   height: 700px;
 }
+
+.reveal h1,
+h2 {
+  background: #30c4ff;
+  background: linear-gradient(
+    90deg,
+    rgba(48, 196, 255, 1) 0%,
+    rgba(133, 77, 255, 1) 31%,
+    rgba(199, 87, 164, 1) 50%,
+    rgba(237, 163, 83, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
