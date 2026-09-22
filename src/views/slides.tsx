@@ -106,7 +106,7 @@ export default function Slides() {
         <Markdown>
           {`
 
-  # Outil 
+  ## Outil 
   
   = code informatique + nom et description
 
@@ -139,7 +139,7 @@ export default function Slides() {
         <Markdown>
           {`
 
-# MCP pour standardiser
+## MCP pour standardiser
 
 ~ API, mais pour les agents IA
 
@@ -153,7 +153,7 @@ Outils mais aussi prompts, ressources...
       <Slide>
         <Markdown>
           {`
-# MCP = backend
+## MCP = backend
 
 Limites d'une approche backend pur :
 
@@ -194,10 +194,12 @@ La solution : des applis fullstack, en MCP !
         <Markdown>
           {`
 
-# Démo 0 : Ce slidedeck !
+## Démo 0 : Ce slidedeck !
 
-Serveur : https://gen-ai-2026-mcp-20ca173a.alpic.live/mcp
+Serveur : https://gen-ai-2026-mcp-20ca173a.alpic.live/mcp  
 Code : https://github.com/lbke/gen-ai-2026-mcp  
+
+Tester avec Mistral : https://chat.mistral.ai/ **(bien activer le connecteur)**
 
 
   `}
@@ -207,10 +209,10 @@ Code : https://github.com/lbke/gen-ai-2026-mcp
         <Markdown>
           {`
 
-# Démo 1 : Doom dans Claude
+## Démo 1 : Doom dans Claude
 
+https://keen-spark-10owm.run.mcp-use.com/mcp  
 https://github.com/lbke/mcp-use-doom  
-https://keen-spark-10owm.run.mcp-use.com/mcp
 
 Le WASM fonctionne !
 
@@ -221,27 +223,14 @@ Le WASM fonctionne !
         <Markdown>
           {`
 
-# Démo 2 : GPT Image dans Claude
+## Démo 2 : GPT Image dans Claude
 
-https://github.com/lbke/mcp-apps-image-generator  
-https://wild-spark-3dg4a.run.mcp-use.com/mcp
+https://wild-spark-3dg4a.run.mcp-use.com/mcp  
+https://github.com/lbke/mcp-apps-image-generator
 
 Fetch côté client, BYOK possible, contrôle sur l'UI, prompting assisté par l'IA
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
-## Coder vos propres MCP Apps
-
-- FastMCP : Python + UI avec Prefab
-- mcp-use : Python ou JavaScript, UI en React
-- Skybridge : JavaScript, UI en react
-- SDK officiel : Tous langages (support variable), UI JS/HTML/CSS
-
-          `}
         </Markdown>
       </Slide>
       <Slide>
@@ -259,7 +248,7 @@ Facilite la navigation des agents sur un site
       <Slide>
         <Markdown>
           {`
-# Démo : WebMCP pour Zork
+## Démo 3 : WebMCP pour Zork
 
 https://zork-phi.vercel.app/
 
@@ -270,14 +259,12 @@ Limité à Chrome Canary et ChatGPT desktop
       <Slide>
         <Markdown>
           {`
+# Coder vos propres MCP Apps
 
-# Bilan : dev web ❤️ IA agentique
-
-- Serveur MCP => dev backend
-- MCP App => dev fullstack
-- WebMCP => dev frontend
-
-Du boulot pour les devs web !
+- FastMCP : Python + UI avec Prefab
+- mcp-use : Python ou JavaScript, UI en React
+- Skybridge : JavaScript, UI en react
+- SDK officiel : Tous langages (support variable), UI JS/HTML/CSS
 
           `}
         </Markdown>
@@ -285,11 +272,26 @@ Du boulot pour les devs web !
       <Slide>
         <Markdown>
           {`
-# Devenir pro du MCP
+## Devenir pro du MCP
 
-- Claude Academy ➡️ Claude Certified Architect
-- Linux Foundation ➡️ MCP Associate
-- LBKE ➡️ « Créer une application MCP pour l'IA agentique »
+- Claude Academy ➔ Claude Certified Architect
+- Linux Foundation ➔ MCP Associate
+- LBKE ➔ « Créer une application MCP pour l'IA agentique »
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+## Dev web ❤️ IA agentique
+
+- Serveur MCP ➔ dev backend
+- MCP App ➔ dev fullstack
+- WebMCP ➔ dev frontend
+
+Du boulot pour les devs web !
+
           `}
         </Markdown>
       </Slide>

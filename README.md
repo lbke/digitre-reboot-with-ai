@@ -9,9 +9,14 @@ pnpm run dev
 Serveur MCP déployé : 
 
 ```
-https://gen-ai-2026-mcp-20ca173a.alpic.live
+https://gen-ai-2026-mcp-20ca173a.alpic.live/mcp
 
 ```
+
+Ajouter le connecteur dans Mistral:
+
+https://chat.mistral.ai/connections
+
 
 ---
 
