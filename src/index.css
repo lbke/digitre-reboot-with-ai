@@ -15,8 +15,21 @@
   --animate-twirl: twirl 20s ease-in-out infinite;
   --animate-aurora: aurora 20s ease-in-out infinite;
   --animate-gradient-flow: gradient-flow 6s linear infinite;
+  /** Reveal
+https://github.com/hakimel/reveal.js/blob/master/css/theme/template/settings.scss
+
+  */
 }
 
+:root {
+  --r-heading1-size: 72px;
+  --r-heading2-size: 56px;
+  --r-main-font-size: 40px;
+}
+
+.reveal em {
+  font-size: 32px;
+}
 .reveal img  {
   margin-left: auto;
   margin-right: auto;

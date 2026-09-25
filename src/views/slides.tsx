@@ -1,9 +1,11 @@
 import "@/index.css";
 
 import { useRegisterViewTool, useViewport } from "skybridge/web";
-import { Deck, Markdown, Slide, useReveal } from "@revealjs/react";
+import { Code, Deck, Markdown, Slide, useReveal } from "@revealjs/react";
 import type { Api } from "reveal.js";
 import lbkeLogo from "../../assets/img/logo_lbke_complet_saumon_300.png";
+import mcpSchemaDark from "../../assets/img/mcp_schema_dark.png";
+import quiz from "../../assets/img/quiz.png";
 // imported from the index.css file instead, here it doesn't work
 // import "reveal.js/reveal.css";
 // import "reveal.js/theme/black.css";
@@ -63,40 +65,42 @@ export default function Slides() {
   return (
     <Deck
       config={{
-        height: 700,
+        height: 576,
+        width: 768,
       }}
       style={{
-        height: 700,
+        height: 576,
+        width: 768,
         paddingBottom: safeArea.insets.bottom,
       }}
     >
       <Slide>
-        <h1 style={{}}>MCP</h1>
-        <h2>Quoi de neuf en 2026?</h2>
-        <p>Meetup GenAI Montpellier - 24 septembre 2026</p>
+        <h1 style={{}}>MCP Apps : </h1>
+        <h2>Nouvel eldorado des devs fullstack ?</h2>
+        <p>Conférence Reboot with AI - DigitRE</p>
+        <p>01 octobre 2026</p>
+      </Slide>
+      <Slide>
+        <div>
+          <h1>Votre speaker</h1>
+          <p>Eric Burel</p>
+          <p>Formateur IA agentique</p>
+          <p>
+            <em>LangChain, Mastra, MCP, RAG, web fullstack...</em>
+          </p>
+          <img
+            src={lbkeLogo}
+            alt="Logo LBKE"
+            style={{ height: 64, marginTop: 40 }}
+          />
+        </div>
       </Slide>
       <Slide>
         <Markdown>
           {`
-          # Votre speaker
-
-          Eric Burel
-
-          Formateur IA agentique - Co-fondateur de LBKE
-
-          LangChain, Mastra, MCP, RAG, web fullstack...
-
-          ![Logo LBKE](${lbkeLogo})
-          
-          `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
-  # Agent IA 
-
-  = Prompt + LLM **+ outils**  
+  # Pourquoi le MCP ?
+  
+  Agent IA = Prompt + LLM **+ outils**  
   (et une boucle while)
 
   `}
@@ -117,7 +121,7 @@ export default function Slides() {
         <Markdown>
           {`
 
-  *Exemple : "Claude, résous ce ticket pour moi, débrouille toi avec l'API GitHub et le débogueur."*
+  Exemple : "Claude, résous ce ticket pour moi, débrouille toi avec l'API GitHub et le débogueur."
 
   `}
         </Markdown>
@@ -125,7 +129,7 @@ export default function Slides() {
       <Slide>
         <Markdown>
           {`
-          # Besoin de nombreux outils
+          ## Besoin de nombreux outils
 
 
   🔎 Outils pour observer  
@@ -144,8 +148,6 @@ export default function Slides() {
 ~ API, mais pour les agents IA
 
 Outils mais aussi prompts, ressources...
-
-*Voir le talk de Laurent Bernard pour le meetup GenAI*
 
   `}
         </Markdown>
@@ -209,12 +211,38 @@ Tester avec Mistral : https://chat.mistral.ai/ **(bien activer le connecteur)**
         <Markdown>
           {`
 
+## À retenir
+
+- Un outil : "démarrer le slidedeck"
+- Une ressource : code HTML décrivant le widget
+- Du CSS et du JS, écrit en React
+
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
 ## Démo 1 : Doom dans Claude
 
 https://keen-spark-10owm.run.mcp-use.com/mcp  
 https://github.com/lbke/mcp-use-doom  
 
-Le WASM fonctionne !
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+## À retenir
+
+- Le WASM fonctionne !
+- Accès aux API bas niveau du navigateur
+- Dépend des paramètres de l'iframe de l'hôte
 
   `}
         </Markdown>
@@ -228,7 +256,6 @@ Le WASM fonctionne !
 https://wild-spark-3dg4a.run.mcp-use.com/mcp  
 https://github.com/lbke/mcp-apps-image-generator
 
-Fetch côté client, BYOK possible, contrôle sur l'UI, prompting assisté par l'IA
 
   `}
         </Markdown>
@@ -236,13 +263,37 @@ Fetch côté client, BYOK possible, contrôle sur l'UI, prompting assisté par l
       <Slide>
         <Markdown>
           {`
-# Bonus : WebMCP, petit frère des MCP Apps
+
+## À retenir
+
+- Prompt généré par l'hôté, envoyé à une API
+- Déporter les calculs côté client : fetch, BYOK
+
+  `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+## Bonus : WebMCP, petit frère des MCP Apps
 
 = définir des outils dans une page web
 
 Facilite la navigation des agents sur un site
 
           `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+
+## Analogie avec le mobile
+
+- MCP App ~ créer une appli mobile native
+- WebMCP  ~ rendre un site web responsive
+
+  `}
         </Markdown>
       </Slide>
       <Slide>
@@ -270,9 +321,33 @@ Limité à Chrome Canary et ChatGPT desktop
         </Markdown>
       </Slide>
       <Slide>
+        <h2> Vers des interfaces génératives ?</h2>
+        <img src={quiz} />
+      </Slide>
+      <Slide>
         <Markdown>
           {`
-## Devenir pro du MCP
+## Un défi pour l'UX et les devs
+
+- Environnement d'affichage particulier
+- Interactions tripartites user/app/LLM
+- Interactions bidirectionnelles
+- UI génératives
+
+Soyez créatifs !
+
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <h2>Recap des interactions</h2>
+
+        <img src={mcpSchemaDark} />
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+# Devenir pro du MCP
 
 - Claude Academy ➔ Claude Certified Architect
 - Linux Foundation ➔ MCP Associate
@@ -299,11 +374,13 @@ Du boulot pour les devs web !
         <Markdown>
           {`
           Refs:
+          - [MCP Apps : nouvel eldorado des devs fullstack ? Reboot With AI](https://rebootwithai.digitregroup.io/programme/talk-2-t1)
           - [MCP Apps - Quoi de neuf les devs](https://quoi-de-neuf-les-devs.happyto.dev/p/jusqu-a-2-9-milliards-de-commits-par-mois-keep-calm-and-stay-focused-quoi-de-neuf-les-devs-188#mcp-apps)
           - [Talk de Laurent Bernard sur le MCP](https://www.youtube.com/watch?v=alBXGtUO1C4)
 - [Claude Academy](https://academy.claude.com/)
 - [MCPA (Linux Foundation)](https://training.linuxfoundation.org/certification/model-context-protocol-associate-mcpa/)
 - [LBKE- Créer une application MCP pour l'IA agentique](https://www.lbke.fr/formations/ia/mcp)
+- [json-render](https://json-render.dev/)
           `}
         </Markdown>
       </Slide>
