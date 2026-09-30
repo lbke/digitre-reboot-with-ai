@@ -352,10 +352,9 @@ Soyez créatifs !
 
 Nouveau canal de distribution pour les applis web
 
-Marketplaces de MCP Apps / plugins IA : 
-- Dans les plateformes IA
-- Par les créateurs de frameworks MCP
-- Autres acteurs
+Notamment les marketplaces des plateformes IA
+
+ChatGPT, Claude...
 
           `}
         </Markdown>
