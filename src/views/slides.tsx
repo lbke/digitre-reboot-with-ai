@@ -348,7 +348,7 @@ Soyez créatifs !
       <Slide>
         <Markdown>
           {`
-# Opportunité pour les entreprises
+# Opportunité business
 
 Nouveau canal de distribution pour les applis web
 
