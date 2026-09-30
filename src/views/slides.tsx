@@ -1,11 +1,12 @@
 import "@/index.css";
 
 import { useRegisterViewTool, useViewport } from "skybridge/web";
-import { Deck, Markdown, Slide, useReveal } from "@revealjs/react";
+import { Deck, Markdown, Slide } from "@revealjs/react";
 import type { Api } from "reveal.js";
 import lbkeLogo from "../../assets/img/logo_lbke_complet_saumon_300.png";
 import mcpSchemaDark from "../../assets/img/mcp_schema_dark.png";
 import quiz from "../../assets/img/quiz.png";
+import { useRef, type ReactNode } from "react";
 // imported from the index.css file instead, here it doesn't work
 // import "reveal.js/reveal.css";
 // import "reveal.js/theme/black.css";
@@ -13,9 +14,7 @@ import quiz from "../../assets/img/quiz.png";
 // @see https://docs.skybridge.tech/api-reference/use-register-view-tool#useregisterviewtool
 // @see https://revealjs.com/react/
 // @see https://revealjs.com/api/
-function useNextSlideTool() {
-  // TODO: open a ticket for this, it seems that RevealApi was renamed Api which breacks useReveal() typings
-  const deck = useReveal() as Api;
+function useNextSlideTool(deck: Api | null) {
   useRegisterViewTool(
     {
       name: "next_slide",
@@ -24,6 +23,9 @@ function useNextSlideTool() {
       annotations: { readOnlyHint: false },
     },
     ({}) => {
+      if (!deck) {
+        return { content: [{ type: "text", text: "Deck not yet loaded." }] };
+      }
       if (deck.isLastSlide()) {
         return { content: [{ type: "text", text: "Already at final slide." }] };
       }
@@ -35,9 +37,7 @@ function useNextSlideTool() {
     },
   );
 }
-function usePrevSlideTool() {
-  // TODO: open a ticket for this, it seems that RevealApi was renamed Api which breacks useReveal() typings
-  const deck = useReveal() as Api;
+function usePrevSlideTool(deck: Api | null) {
   useRegisterViewTool(
     {
       name: "previous_slide",
@@ -46,6 +46,9 @@ function usePrevSlideTool() {
       annotations: { readOnlyHint: false },
     },
     ({}) => {
+      if (!deck) {
+        return { content: [{ type: "text", text: "Deck not yet loaded." }] };
+      }
       if (deck.isFirstSlide()) {
         return { content: [{ type: "text", text: "Already at first slide." }] };
       }
@@ -58,12 +61,19 @@ function usePrevSlideTool() {
   );
 }
 
+function SlideToolsProvider({ children }: { children: ReactNode }) {
+  return children;
+}
+
 export default function Slides() {
   const { safeArea } = useViewport();
-  useNextSlideTool();
-  usePrevSlideTool();
+  const deckRef = useRef<Api | null>(null);
+  useNextSlideTool(deckRef.current);
+  usePrevSlideTool(deckRef.current);
+
   return (
     <Deck
+      deckRef={deckRef}
       config={{
         height: 576,
         width: 768,
@@ -74,61 +84,62 @@ export default function Slides() {
         paddingBottom: safeArea.insets.bottom,
       }}
     >
-      <Slide>
-        <h1 style={{}}>MCP Apps : </h1>
-        <h2>Nouvel eldorado des devs fullstack ?</h2>
-        <p>Conférence Reboot with AI - DigitRE</p>
-        <p>01 octobre 2026</p>
-      </Slide>
-      <Slide>
-        <div>
-          <h1>Votre speaker</h1>
-          <p>Eric Burel</p>
-          <p>Formateur IA agentique</p>
-          <p>
-            <em>LangChain, Mastra, MCP, RAG, web fullstack...</em>
-          </p>
-          <img
-            src={lbkeLogo}
-            alt="Logo LBKE"
-            style={{ height: 64, marginTop: 40 }}
-          />
-        </div>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+      <SlideToolsProvider>
+        <Slide>
+          <h1 style={{}}>MCP Apps : </h1>
+          <h2>Nouvel eldorado des devs fullstack ?</h2>
+          <p>Conférence Reboot with AI - DigitRE</p>
+          <p>01 octobre 2026</p>
+        </Slide>
+        <Slide>
+          <div>
+            <h1>Votre speaker</h1>
+            <p>Eric Burel</p>
+            <p>Formateur IA agentique</p>
+            <p>
+              <em>LangChain, Mastra, MCP, RAG, web fullstack...</em>
+            </p>
+            <img
+              src={lbkeLogo}
+              alt="Logo LBKE"
+              style={{ height: 64, marginTop: 40 }}
+            />
+          </div>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
   # Pourquoi le MCP ?
   
   Agent IA = Prompt + LLM **+ outils**  
   (et une boucle while)
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
   ## Outil 
   
   = code informatique + nom et description
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
   Exemple : "Claude, résous ce ticket pour moi, débrouille toi avec l'API GitHub et le débogueur."
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
           ## Besoin de nombreux outils
 
 
@@ -137,11 +148,11 @@ export default function Slides() {
 
 
           `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 ## MCP pour standardiser
 
@@ -150,11 +161,11 @@ export default function Slides() {
 Outils mais aussi prompts, ressources...
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 ## MCP = backend
 
 Limites d'une approche backend pur :
@@ -164,11 +175,11 @@ Limites d'une approche backend pur :
 - Messages sérialisables uniquement
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 # 🕊️ MCP Apps 🙏
 
@@ -176,11 +187,11 @@ La solution : des applis fullstack, en MCP !
 
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 # Cas d'usage
 
@@ -190,11 +201,11 @@ La solution : des applis fullstack, en MCP !
 *Démos issues d'une série d'articles à retrouver sur Quoi de neufs les devs*
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 ## Démo 0 : Ce slidedeck !
 
@@ -205,11 +216,11 @@ Tester avec Mistral : https://chat.mistral.ai/ **(bien activer le connecteur)**
 
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 ## À retenir
 
@@ -219,11 +230,11 @@ Tester avec Mistral : https://chat.mistral.ai/ **(bien activer le connecteur)**
 
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 ## Démo 1 : Doom dans Claude
 
@@ -232,11 +243,11 @@ https://github.com/lbke/mcp-use-doom
 
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 ## À retenir
 
@@ -245,11 +256,11 @@ https://github.com/lbke/mcp-use-doom
 - Dépend des paramètres de l'iframe de l'hôte
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 ## Démo 2 : GPT Image dans Claude
 
@@ -258,11 +269,11 @@ https://github.com/lbke/mcp-apps-image-generator
 
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 ## À retenir
 
@@ -271,11 +282,11 @@ https://github.com/lbke/mcp-apps-image-generator
 - Moins de consommation CPU, bande-passante, de data sensible pour le serveur
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 ## Bonus : WebMCP, petit frère des MCP Apps
 
 = définir des outils dans une page web
@@ -283,11 +294,11 @@ https://github.com/lbke/mcp-apps-image-generator
 Facilite la navigation des agents sur un site
 
           `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 ## Analogie avec le mobile
 
@@ -295,22 +306,22 @@ Facilite la navigation des agents sur un site
 - WebMCP  ~ rendre un site web responsive
 
   `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 ## Démo 3 : WebMCP pour Zork
 
 https://zork-phi.vercel.app/
 
 Limité à Chrome Canary et ChatGPT desktop
           `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 # Coder vos propres MCP Apps
 
 - FastMCP : Python + UI avec Prefab
@@ -319,11 +330,11 @@ Limité à Chrome Canary et ChatGPT desktop
 - SDK officiel : Tous langages (support variable), UI JS/HTML/CSS
 
           `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 ## Un défi pour l'UX et les devs
 
 - Environnement d'affichage particulier
@@ -334,20 +345,20 @@ Limité à Chrome Canary et ChatGPT desktop
 Soyez créatifs !
 
           `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <h2> Vers des interfaces génératives ?</h2>
-        <img src={quiz} />
-      </Slide>
-      <Slide>
-        <h2>Recap des interactions</h2>
+          </Markdown>
+        </Slide>
+        <Slide>
+          <h2> Vers des interfaces génératives ?</h2>
+          <img src={quiz} />
+        </Slide>
+        <Slide>
+          <h2>Recap des interactions</h2>
 
-        <img src={mcpSchemaDark} />
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          <img src={mcpSchemaDark} />
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 # Opportunité business
 
 Nouveau canal de distribution pour les applis web
@@ -357,22 +368,22 @@ Notamment les marketplaces des plateformes IA
 ChatGPT, Claude...
 
           `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 ## Devenir pro du MCP
 
 - Claude Academy ➔ Claude Certified Architect
 - Linux Foundation ➔ MCP Associate
 - LBKE ➔ « Créer une application MCP pour l'IA agentique »
           `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
 
 ## Dev web ❤️ IA agentique
 
@@ -383,11 +394,11 @@ ChatGPT, Claude...
 Du boulot pour les devs web !
 
           `}
-        </Markdown>
-      </Slide>
-      <Slide>
-        <Markdown>
-          {`
+          </Markdown>
+        </Slide>
+        <Slide>
+          <Markdown>
+            {`
           Refs:
           - [MCP Apps : nouvel eldorado des devs fullstack ? Reboot With AI](https://rebootwithai.digitregroup.io/programme/talk-2-t1)
           - [MCP Apps - Quoi de neuf les devs](https://quoi-de-neuf-les-devs.happyto.dev/p/jusqu-a-2-9-milliards-de-commits-par-mois-keep-calm-and-stay-focused-quoi-de-neuf-les-devs-188#mcp-apps)
@@ -397,8 +408,9 @@ Du boulot pour les devs web !
 - [LBKE- Créer une application MCP pour l'IA agentique](https://www.lbke.fr/formations/ia/mcp)
 - [json-render](https://json-render.dev/)
           `}
-        </Markdown>
-      </Slide>
+          </Markdown>
+        </Slide>
+      </SlideToolsProvider>
     </Deck>
   );
 }
