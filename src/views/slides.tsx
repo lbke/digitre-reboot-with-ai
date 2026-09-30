@@ -322,10 +322,6 @@ Limité à Chrome Canary et ChatGPT desktop
         </Markdown>
       </Slide>
       <Slide>
-        <h2> Vers des interfaces génératives ?</h2>
-        <img src={quiz} />
-      </Slide>
-      <Slide>
         <Markdown>
           {`
 ## Un défi pour l'UX et les devs
@@ -339,6 +335,10 @@ Soyez créatifs !
 
           `}
         </Markdown>
+      </Slide>
+      <Slide>
+        <h2> Vers des interfaces génératives ?</h2>
+        <img src={quiz} />
       </Slide>
       <Slide>
         <h2>Recap des interactions</h2>

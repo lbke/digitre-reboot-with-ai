@@ -1,4 +1,10 @@
-# Présentation pour le meetup Gen AI Montpellier - 24/09/2026 
+# Présentation MCP Apps
+
+Pour la conférence Reboot With AI - DigitRE - 01/10/2026
+
+Slides : https://docs.google.com/presentation/d/1x1rTlZwhFqTWNAhOYxZx0CmfFJ56MKdZW_PITeQSNp4/edit?usp=sharing
+GitHub : https://github.com/lbke/digitre-reboot-with-ai
+Deployed : https://digitre-reboot-with-15672ca5.alpic.live/mcp
 
 Lancement:
 
@@ -6,14 +12,6 @@ Lancement:
 pnpm run dev
 ```
 
-Serveur MCP déployé : 
-
-```
-https://gen-ai-2026-mcp-20ca173a.alpic.live/mcp
-
-https://github.com/lbke/gen-ai-2026-mcp
-
-```
 
 Ajouter le connecteur dans Mistral:
 
@@ -23,9 +21,6 @@ Pour tester dans Claude:
 
 https://claude.ai/chat
 
-Backup Google slides: 
-
-https://docs.google.com/presentation/d/1bLYBR18dvFTAa9hsewpl20rQkLwXAHL4z7AKYgX8opQ/edit?usp=sharing
 
 ---
 

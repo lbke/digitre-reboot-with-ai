@@ -2,19 +2,19 @@ import { Skybridge } from "skybridge/server";
 // import { z } from "zod";
 
 export const app = new Skybridge({
-  name: "gen-ai-2026-mcp",
+  name: "reboot-with-ai-digitre-mcp",
   version: "0.0.1",
   handler: (server) =>
     server
       .registerTool(
         {
           name: "start_slidedeck",
-          description: "Start the presentation for the Gen AI Montpellier meetup, will display the slidedeck.",
+          description: "Start the presentation for the DigitRE conference, will display the slidedeck. Trigger this tool whenever starting a slidedeck or presentation is mentioned.",
           inputSchema: {
             // name: z.string().optional().describe("The user name."),
           },
           annotations: {
-            title: "Start GenAI Meetup Presentation",
+            title: "Start the MCP Apps slidedeck",
             readOnlyHint: true,
             destructiveHint: false,
             openWorldHint: false,
