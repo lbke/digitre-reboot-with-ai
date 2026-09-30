@@ -5,6 +5,7 @@ Pour la conférence Reboot With AI - DigitRE - 01/10/2026
 Slides : https://docs.google.com/presentation/d/1x1rTlZwhFqTWNAhOYxZx0CmfFJ56MKdZW_PITeQSNp4/edit?usp=sharing
 GitHub : https://github.com/lbke/digitre-reboot-with-ai
 Deployed : https://digitre-reboot-with-15672ca5.alpic.live/mcp
+Playground : https://digitre-reboot-with-15672ca5.alpic.live/try
 
 Lancement:
 
