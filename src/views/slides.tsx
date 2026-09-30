@@ -1,7 +1,7 @@
 import "@/index.css";
 
 import { useRegisterViewTool, useViewport } from "skybridge/web";
-import { Code, Deck, Markdown, Slide, useReveal } from "@revealjs/react";
+import { Deck, Markdown, Slide, useReveal } from "@revealjs/react";
 import type { Api } from "reveal.js";
 import lbkeLogo from "../../assets/img/logo_lbke_complet_saumon_300.png";
 import mcpSchemaDark from "../../assets/img/mcp_schema_dark.png";
@@ -266,8 +266,9 @@ https://github.com/lbke/mcp-apps-image-generator
 
 ## À retenir
 
-- Prompt généré par l'hôté, envoyé à une API
+- Prompt généré par l'hôte et appel d'IA **client-side**
 - Déporter les calculs côté client : fetch, BYOK
+- Moins de consommation CPU, bande-passante, de data sensible pour le serveur
 
   `}
         </Markdown>
@@ -347,7 +348,22 @@ Soyez créatifs !
       <Slide>
         <Markdown>
           {`
-# Devenir pro du MCP
+# Opportunité pour les entreprises
+
+Nouveau canal de distribution pour les applis web
+
+Marketplaces de MCP Apps / plugins IA : 
+- Dans les plateformes IA
+- Par les créateurs de frameworks MCP
+- Autres acteurs
+
+          `}
+        </Markdown>
+      </Slide>
+      <Slide>
+        <Markdown>
+          {`
+## Devenir pro du MCP
 
 - Claude Academy ➔ Claude Certified Architect
 - Linux Foundation ➔ MCP Associate
